@@ -21,7 +21,6 @@ app.post('/enumerate-subdomains', async (req, res) => {
 
     // Add the task to the queue
     const job = await subdomainQueue.add({ domain, generatedId });
-
     // Respond immediately with the generatedId
     res.json({ generatedId });
 
@@ -43,7 +42,8 @@ app.get('/enumeration-results', async (req, res) => {
 
     // Read and send the file content as response
     const fileContent = fs.readFileSync(fileName, 'utf-8');
-    res.send(fileContent);
+    const arr = fileContent.split('\n');
+    return res.status(200).json({ result: arr})
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
