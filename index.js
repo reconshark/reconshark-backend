@@ -52,7 +52,7 @@ app.get('/enumeration-results', async (req, res) => {
 
 // Function to start subdomain enumeration task
 function startSubdomainEnumeration(domain, generatedId) {
-  const command = `subfinder -all -d ${domain} -o ${domain}_${generatedId}.txt -pc /root/subfinder.config`;
+  const command = `subfinder -all -d ${domain} -o ${domain}_${generatedId}.txt`;
 
   const enumerationProcess = spawn('sh', ['-c', command]);
 
